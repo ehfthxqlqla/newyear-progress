@@ -73,7 +73,7 @@ const counterInit = ($counter, $counter2, max) => {
             // 주기적인 시간 변경
             const now = dayjs()
         
-            const timeFormat = now.format("HH:MM:ss"),
+            const timeFormat = now.format("HH:mm:ss"),
             ms = now.format("SSS")
         
             timerTime.innerText = `${timeFormat} / ${ms}`
