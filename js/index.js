@@ -1,31 +1,32 @@
 function secondsUntil(targetDate) {
-    // 현재 날짜와 시간을 가져오기
-    const now = new Date();
+    const now = dayjs(); // 현재 시간
+    const target = dayjs(targetDate); // 목표 시간
 
-    // 타겟을 입력받은 날짜(ISO)로 맞추기
-    const target = new Date(targetDate);
+    // 시간차를 초 단위로 계산
+    const differenceInSeconds = target.diff(now, 'ms');
 
-    // 차이 구하기
-    const differenceInMillis = target - now;
-
-    // ms 초로 바꾸기
-    const differenceInSeconds = Math.floor(differenceInMillis / 1000);
+    // console.log(differenceInSeconds)
 
     return differenceInSeconds;
 }
 
+function gapBetweenDate(start, end) {
+    const s = dayjs(start) // 스타트
+    const e = dayjs(end) // 엔드
+
+    const diff = e.diff(s, 'ms')
+
+    return diff
+}
+
 function secondsSince(startDate) {
-    // 지금 시간 구하기
-    const now = new Date();
+    const now = dayjs(); // 현재 시간
+    const start = dayjs(startDate); // 시작 시간
 
-    // 시작날짜를 입력받은 값으로 정하기
-    const start = new Date(startDate);
+    // 시간차를 초 단위로 계산
+    const differenceInSeconds = now.diff(start, 'ms');
 
-    // 시간차 구하기
-    const differenceInMillis = now - start;
-
-    // ms 초로 바꾸기
-    const differenceInSeconds = Math.floor(differenceInMillis / 1000);
+    // console.log(differenceInSeconds)
 
     return differenceInSeconds;
 }
@@ -44,6 +45,7 @@ const counterInit = ($counter, $counter2, max) => {
     const handle = setInterval(() => {
     $counter.innerHTML = `${(max - now).toFixed(6)}%`;
     $counter2.innerHTML = `${(max - now).toFixed(6)}%`;
+    progressBar.style.width = `${yearProgress}%`
     
     // 목표수치에 도달하면 정지
     if (now < 1) {
@@ -80,17 +82,16 @@ const counterInit = ($counter, $counter2, max) => {
         setInterval(() => {
             // 주기적인 퍼센테이지 변경
         
-            const remainingSeconds = secondsUntil(`2025-12-31T23:59:59`),
-            elapsedSeconds = secondsSince(`2024-01-01T00:00:00`)
+            const elapsedSeconds = secondsSince(`2024-01-01T00:00:00`)
         
-            const yearProgress = ((elapsedSeconds / remainingSeconds) * 100).toFixed(6)
+            const yearProgress = ((elapsedSeconds / gapBetweenDate(`2024-01-01T00:00:00`, `2025-01-01T00:00:00`)) * 100).toFixed(6)
         
             progressEn.innerText = `${yearProgress}%`
             progressKo.innerText = `${yearProgress}%`
         
             progressBar.style.width = `${yearProgress}%`
         }, 100);
-    }, 1000);
+    }, 2000);
 }
 
 // const new
@@ -101,9 +102,7 @@ progressEn = document.querySelector(".progress-text h1 span"),
 progressKo = document.querySelector(".progress-text h3 span"),
 progressBar = document.querySelector(".progress-bar-now")
 
-const remainingSecondsInit = secondsUntil(`2025-12-31T23:59:59`),
-elapsedSecondsInit = secondsSince(`2024-01-01T00:00:00`)
+const elapsedSecondsInit = secondsSince(`2024-01-01T00:00:00`)
 
-const yearProgress = ((elapsedSecondsInit / remainingSecondsInit) * 100).toFixed(6)
-
+const yearProgress = (elapsedSecondsInit / gapBetweenDate(`2024-01-01T00:00:00`, `2025-01-01T00:00:00`) * 100).toFixed(6)
 setTimeout(counterInit(progressEn, progressKo, yearProgress), 1000)
