@@ -102,7 +102,7 @@ progressEn = document.querySelector(".progress-text h1 span"),
 progressKo = document.querySelector(".progress-text h3 span"),
 progressBar = document.querySelector(".progress-bar-now")
 
-const elapsedSecondsInit = secondsSince(`2024-01-01T00:00:00`)
+const elapsedSecondsInit = secondsSince(`2025-01-01T00:00:00`)
 
-const yearProgress = (elapsedSecondsInit / gapBetweenDate(`2024-01-01T00:00:00`, `2025-01-01T00:00:00`) * 100).toFixed(6)
+const yearProgress = (elapsedSecondsInit / gapBetweenDate(`2025-01-01T00:00:00`, `2026-01-01T00:00:00`) * 100).toFixed(6)
 setTimeout(counterInit(progressEn, progressKo, yearProgress), 1000)
