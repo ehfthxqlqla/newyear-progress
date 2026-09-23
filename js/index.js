@@ -84,7 +84,7 @@ const counterInit = ($counter, $counter2, max) => {
         
             const elapsedSeconds = secondsSince(`2025-01-01T00:00:00`)
         
-            const yearProgress = ((elapsedSeconds / gapBetweenDate(`2025-01-01T00:00:00`, `2026-01-01T00:00:00`)) * 100).toFixed(6)
+            const yearProgress = ((elapsedSeconds / gapBetweenDate(`2026-01-01T00:00:00`, `2027-01-01T00:00:00`)) * 100).toFixed(6)
         
             progressEn.innerText = `${yearProgress}%`
             progressKo.innerText = `${yearProgress}%`
@@ -104,5 +104,5 @@ progressBar = document.querySelector(".progress-bar-now")
 
 const elapsedSecondsInit = secondsSince(`2025-01-01T00:00:00`)
 
-const yearProgress = (elapsedSecondsInit / gapBetweenDate(`2025-01-01T00:00:00`, `2026-01-01T00:00:00`) * 100).toFixed(6)
+const yearProgress = (elapsedSecondsInit / gapBetweenDate(`2026-01-01T00:00:00`, `2027-01-01T00:00:00`) * 100).toFixed(6)
 setTimeout(counterInit(progressEn, progressKo, yearProgress), 1000)
