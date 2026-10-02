@@ -82,7 +82,7 @@ const counterInit = ($counter, $counter2, max) => {
         setInterval(() => {
             // 주기적인 퍼센테이지 변경
         
-            const elapsedSeconds = secondsSince(`2025-01-01T00:00:00`)
+            const elapsedSeconds = secondsSince(`2026-01-01T00:00:00`)
         
             const yearProgress = ((elapsedSeconds / gapBetweenDate(`2026-01-01T00:00:00`, `2027-01-01T00:00:00`)) * 100).toFixed(6)
         
@@ -102,7 +102,7 @@ progressEn = document.querySelector(".progress-text h1 span"),
 progressKo = document.querySelector(".progress-text h3 span"),
 progressBar = document.querySelector(".progress-bar-now")
 
-const elapsedSecondsInit = secondsSince(`2025-01-01T00:00:00`)
+const elapsedSecondsInit = secondsSince(`2026-01-01T00:00:00`)
 
 const yearProgress = (elapsedSecondsInit / gapBetweenDate(`2026-01-01T00:00:00`, `2027-01-01T00:00:00`) * 100).toFixed(6)
 setTimeout(counterInit(progressEn, progressKo, yearProgress), 1000)
